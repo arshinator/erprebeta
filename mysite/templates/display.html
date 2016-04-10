@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Process{{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <h2 >Hello</h2>
+        <div class="row">
+          <div class="col s12 m15">
+            <div class="card-panel blue">
+              <font size="3.5">
+                  <p  class="white-text">Your files has been successfully uploaded to our servers, also please fill this form to complete our process<br>
+                  Click on this button to fill the form</p>
+              </font>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div  class="row" align="center">
+        <a href="{%  url 'data' %}">
+        <button class="btn waves-effect waves-light red darken-1" type="submit">Form
+            <i class="mdi-content-send right white-text"></i>
+        </button>
+        </a>
+    </div>
+{% endblock %}

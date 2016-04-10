@@ -1,0 +1,12 @@
+{% extends "base1.html" %}
+{% load i18n %}
+
+{% block content %}
+<form method="post" action="{% url 'auth_register' %}">
+  <div class="row">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit" value="{% trans 'Submit' %}" ></button></div>
+</form>
+{% endblock %}

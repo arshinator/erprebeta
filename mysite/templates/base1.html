@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+<html>
+  <head>
+    <title>
+      {% block title %}
+        | EasyReturns
+      {% endblock %}
+    </title>
+    {% include 'head.html' %}
+
+          {% block header %}{% endblock %}
+  </head>
+  <body>
+    <header>
+      {% include 'nav.html' %}
+    </header>
+
+
+        <div class="container">
+            <div class="col l6 s12">
+
+
+                    {% block content %}
+
+                    {% endblock %}
+            </div>
+        </div>
+
+    {% include 'footer.html' %}
+  </body>
+
+</html>

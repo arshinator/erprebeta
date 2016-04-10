@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ profile.name }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ profile.name }}</h1>
+<p>{{ profile.pan }}</p>
+<a href="{% url 'edit_profile' slug=profiles.slug %}">Edit me!</a>
+
+{% endblock %}
