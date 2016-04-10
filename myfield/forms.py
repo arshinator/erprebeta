@@ -53,7 +53,7 @@ class TestField(forms.Form):
     n_pension = forms.CharField(max_length=100)
     edu_loan = forms.CharField(max_length=100)
 
-    m_parents = forms.CharField(max_length=100)
+    m_parent = forms.CharField(max_length=100)
     m_you = forms.CharField(max_length=100)
 
     d11 = forms.CharField(max_length=100)

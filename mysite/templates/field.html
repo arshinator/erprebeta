@@ -4,6 +4,7 @@
 {% block title %}Form{{ block.super }}{% endblock %}
 
 {% block content %}
+
     <div class="container">
           <div class="col l6 s12">
                 <form class="col s12" action="{% url 'myfield.views.data' %}" method="post">{% csrf_token %}
@@ -16,14 +17,14 @@
                             <i class="material-icons prefix">store</i>
                             <label  class="black-text">First House :</label>
                         </div>
-                        <!--<div class="input-field col s2">-->
-                          <!--<input disabled value="Assumbed to be " id="disabled" type="text" class="validate">-->
-                          <!--<label for="disabled">Rent Received</label>-->
-                        <!--</div>-->
-                        <!--<div class="input-field col s2">-->
-                          <!--<input disabled value="Self Occupied" id="disabled1" type="text" class="validate">-->
-                          <!--<label for="disabled">Municipal Tax</label>-->
-                        <!--</div>-->
+                        <div class="input-field col s2">
+                          <input disabled value="Assumbed to be " id="disabled" type="text" class="validate">
+                          <label for="disabled">Rent Received</label>
+                        </div>
+                        <div class="input-field col s2">
+                          <input disabled value="Self Occupied" id="disabled1" type="text" class="validate">
+                          <label for="disabled">Municipal Tax</label>
+                        </div>
                         <div class="input-field col s2">
                             <input id="f_i" name="first_interest" type="text" class="validate black-text" >
                             <label for="f_i" class="black-text">Interest</label>
@@ -162,7 +163,7 @@
                             <label for="icon_prefix" class="black-text"> Medical Insurance :</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="icon_prefix" name="m_parents" type="text" class="validate black-text">
+                            <input id="icon_prefix" name="m_parent" type="text" class="validate black-text">
                             <label for="icon_prefix" class="black-text">Of Parents</label>
                         </div>
                         <div class="input-field col s4">
@@ -247,7 +248,7 @@
                         <p><b>Any Other Deductions</b><p>
                         <div class="input-field col s12">
 
-                            <textarea id="icon_prefix2" name="message" class="materialize-textarea black-text" ></textarea>
+                            <textarea id="icon_prefix2" name="other_deduct" class="materialize-textarea black-text" ></textarea>
                             <label for="icon_prefix2" class="black-text">Other Deductions</label>
                         </div>
                         <br>
@@ -261,4 +262,5 @@
                 </form>
             </div>
     </div>
+
 {% endblock %}
