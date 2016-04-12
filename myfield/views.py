@@ -3,6 +3,10 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import TestField
+#
+# def dataform(request):
+#     return render(request,"field.html",{})
+
 
 
 def data(request):

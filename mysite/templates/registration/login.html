@@ -2,13 +2,48 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %} 
-  {{ form.as_p }}
+<!--<form method="post" action=".">-->
+  <!--{% csrf_token %}-->
+  <!--{{ form.as_p }}-->
 
-  <input type="submit" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+  <!--<input type="submit" value="{% trans 'Log in' %}" />-->
+  <!--<input type="hidden" name="next" value="{{ next }}" />-->
+<!--</form>-->
+
+
+
+<div class="row">
+    <form method="POST" action="." class="col s12">{% csrf_token %}
+
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="id_username" type="text" name="username" class="validate" maxlength="254">
+          <label for="id_username">Username:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="id_password" type="password" name="password" class="validate">
+          <label for="id_password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+<div class="col offset s6">
+      <button class="btn waves-effect waves-light blue darken-1" type="submit">Login
+            <i class="mdi-content-send right white-text"></i>
+
+
+      </button>
+    </div>
+      <div class="col offset s6">
+          <button class="btn waves-effect waves-light red darken-1" type="submit">Sign Up
+              <i class="mdi-content-send right white-text"></i>
+          </button>
+      </div>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+    </form></div>
 
 <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
 <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>

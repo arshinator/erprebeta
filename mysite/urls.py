@@ -16,16 +16,14 @@ Including another URLconf
 
 """
 from django.conf import settings
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from django.contrib import admin
 from myprofile.backends import MyRegistrationView
 from django.views.generic import TemplateView
 
 
-
-
 urlpatterns = [
-    url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),
+    url(r'^$', 'myprofile.views.index', name='home'),
     url(r'^admin/', admin.site.urls),
 
     url(r'^profiles/(?P<slug>[-\w]+)/$', 'myprofile.views.profile_detail', name='profile_detail'),
@@ -35,16 +33,18 @@ urlpatterns = [
 
     url(r'^accounts/', include('registration.backends.default.urls')),
 
-    #mycontact
-    url(r"^contact/",'mycontact.views.contact',name="contact"),
+    # mycontact
+    url(r"^contact/", 'mycontact.views.contact', name="contact"),
 
-    #myupload
+    # myupload
     url(r'^dash/', 'myupload.views.Form', name="dash"),
-    url(r'^upload','myupload.views.Upload', name="upload"),
+    url(r'^upload', 'myupload.views.Upload', name="upload"),
 
-    url(r"^data/",'myfield.views.data',name="data"),
 
-    #terms and refund templates
+    # url(r'^dataform/', 'myfield.views.dataform', name="dataform"),
+    url(r"^data", 'myfield.views.data', name="data"),
+
+    # terms and refund templates
     url(r'^refund/', TemplateView.as_view(template_name='refund.html'), name='refund'),
     url(r"^tandc/", TemplateView.as_view(template_name='tandc.html'), name='tandc'),
     url(r"^pay/", TemplateView.as_view(template_name='pay.html'), name='pay'),

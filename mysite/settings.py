@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'myfield',
     'myprofile',
     'myupload',
+    'app',
 
 ]
 
@@ -87,6 +88,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+REGISTRATION_FORM = 'app.forms.MyRegForm'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

@@ -7,8 +7,6 @@ from django.template.defaultfilters import slugify
 # Create your views here.
 
 
-
-
 def index(request):
     profiles = Profile.objects.all()
     return render(request, 'index.html', {'profiles': profiles, })
@@ -20,6 +18,7 @@ def profile_detail(request, slug):
 
     # and pass to the template
     return render(request, 'profiles/profile_detail.html', {'profiles': profile, })
+
 
 
 def edit_profile(request, slug):
@@ -68,3 +67,4 @@ def create_profile(request):
         form = form_class()
 
     return render(request, 'profiles/create_profile.html', {'form': form, })
+

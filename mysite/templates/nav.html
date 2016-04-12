@@ -12,9 +12,9 @@
 
                     {% if request.user.is_authenticated %}
                         <li><a href="{% url 'dash'%}">Dashboard</a></li>
-                        <li><a href="">Settings</a></li>
+                        <!--<li><a href="">Profile</a></li>-->
                         <li><a href="{% url 'auth_logout' %}" class="button">Logout</a></li>
-                        <li>Hi,{{user.email}} </li>
+                        <!--<li>Hi,{{user.username}} </li>-->
                     {% else %}
                         <li><a href="{% url 'auth_login' %}" class="button">Login/SignUp</a></li>
                     {% endif %}
