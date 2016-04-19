@@ -19,19 +19,17 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
 from myprofile.backends import MyRegistrationView
-from django.views.generic import TemplateView
-
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     url(r'^$', 'myprofile.views.index', name='home'),
     url(r'^admin/', admin.site.urls),
 
+    # url(r'^profiles/$', RedirectView.as_view(pattern_name='tandc',permanent=True)),
     url(r'^profiles/(?P<slug>[-\w]+)/$', 'myprofile.views.profile_detail', name='profile_detail'),
     url(r'^profiles/(?P<slug>[-\w]+)/edit/$', 'myprofile.views.edit_profile', name='edit_profile'),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/create_profile/$', 'myprofile.views.create_profile', name='registration_create_profile'),
-
-    url(r'^accounts/', include('registration.backends.default.urls')),
 
     # mycontact
     url(r"^contact/", 'mycontact.views.contact', name="contact"),
@@ -49,5 +47,7 @@ urlpatterns = [
     url(r"^tandc/", TemplateView.as_view(template_name='tandc.html'), name='tandc'),
     url(r"^pay/", TemplateView.as_view(template_name='pay.html'), name='pay'),
     url(r"^display/", TemplateView.as_view(template_name='display.html'), name='display'),
+
+    url(r'^accounts/', include('registration.backends.default.urls')),
 
 ]

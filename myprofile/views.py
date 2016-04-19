@@ -20,7 +20,6 @@ def profile_detail(request, slug):
     return render(request, 'profiles/profile_detail.html', {'profiles': profile, })
 
 
-
 def edit_profile(request, slug):
     # grab the object
     profile = Profile.objects.get(slug=slug)
@@ -43,6 +42,9 @@ def edit_profile(request, slug):
         return render(request, 'profiles/edit_profile.html', {'profiles': profile, 'form': form, })
 
 
+
+
+
 def create_profile(request):
     form_class = ProfileForm
     # if we're coming from a submitted form, do this
@@ -54,9 +56,16 @@ def create_profile(request):
             profile = form.save(commit=False)
             # set the additional details
             profile.user = request.user
-            profile.slug = slugify(profile.pan)
+            # profile.pan = form.clean_pan(profile.pan)
 
-            # save the object
+            # if(profile.pan[4] == 'P' and profile.pan[9].isdigit() == True and profile.pan[:5].isalpha() == True and
+            #    profile.pan[6:9].isnumeric() == True):
+            #
+            #
+            # else:
+            #     raise ValueError('Enter PAN Properly')
+            profile.slug = slugify(profile.pan)
+                # save the object
             profile.save()
 
             # redirect to our newly created profiles
@@ -67,4 +76,3 @@ def create_profile(request):
         form = form_class()
 
     return render(request, 'profiles/create_profile.html', {'form': form, })
-

@@ -5,18 +5,19 @@
 {% endblock %}
 
 {% block content %}
+{% if user == profiles.user %}
+    <h2>Welcome to EasyReturns</h2>
+    <h3>{{profiles.first_name }}</h3>
+    <p>Your profile </p>
 
-<h2>Welcome to EasyReturns</h2>
-<h3>{{profiles.first_name }}</h3>
-<p>Your profile </p>
+    <p> Name: {{ profiles.first_name }}&nbsp;{{profiles.last_name}}</p>
+    <p>Email ID: {{user.username}}</p>
+    <p> PAN: {{ profiles.pan }}</p>
+    <p>Phone Number: {{profiles.phone}}</p>
+    <p>Date Of Birth: {{profiles.dob}}</p>
 
-<p> Name: {{ profiles.first_name }}&nbsp;{{profiles.last_name}}</p>
-<p>Email ID: {{user.username}}</p>
-<p> PAN: {{ profiles.pan }}</p>
-<p>Phone Number: {{profiles.phone}}</p>
-<p>Date Of Birth: {{profiles.dob}}</p>
-
-<a href="{% url 'edit_profile' slug=profiles.slug %}">Edit Your Profile</a>
+    <a href="{% url 'edit_profile' slug=profiles.slug %}">Edit Your Profile</a>
+{% endif %}
 
 
 {% endblock %}

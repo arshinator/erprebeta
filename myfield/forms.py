@@ -3,9 +3,11 @@ from django import forms
 
 class TestField(forms.Form):
     NSC = (
-        ('Financial Year 2015', 'Financial Year 2015'),
-        ('Financial Year 2016', 'Financial Year 2016'),
-        ('Financial Year 2017', 'Financial Year 2017'),
+        ('Financial Year 2015-16', 'Financial Year 2015-16'),
+        ('Financial Year 2014-15', 'Financial Year 2014-15'),
+        ('Financial Year 2013-14', 'Financial Year 2013-14'),
+        ('Financial Year 2012-13', 'Financial Year 2012-13'),
+        ('Financial Year 2011-12', 'Financial Year 2011-12'),
 
     )
 
@@ -28,6 +30,25 @@ class TestField(forms.Form):
 
     )
 
+    TIME = (
+        ('8 am - 9 am', '8 am - 9 am'),
+        ('9 am - 10 am', '9 am - 10 am'),
+        ('10 am - 11 am', '10 am - 11 am'),
+        ('11 am - 12 pm', '11 am - 12 pm'),
+        ('12 pm - 1 pm', '12 pm - 1 pm'),
+        ('1 pm - 2 pm', '1 pm - 2 pm'),
+        ('2 pm - 3 pm', '2 pm - 3 pm'),
+        ('3 pm - 4 pm', '3 pm - 4 pm'),
+        ('4 pm - 5 pm', '4 pm - 5 pm'),
+        ('5 pm - 6 pm', '5 pm - 6 pm'),
+        ('7 pm - 8 pm', '7 pm - 8 pm'),
+        ('8 pm - 9 pm', '8 pm - 9 pm'),
+        ('9 pm - 10 pm', '9 pm - 10 pm'),
+
+
+    )
+
+    # detail = forms.CharField(max_length=100)
     first_interest = forms.CharField(max_length=100)
     first_principal = forms.CharField(max_length=100)
 
@@ -35,6 +56,9 @@ class TestField(forms.Form):
     other_tax = forms.CharField(max_length=100)
     other_interest = forms.CharField(max_length=100)
     other_principal = forms.CharField(max_length=100)
+
+    interest_due = forms.CharField(max_length=100)
+    p_repayment = forms.CharField(max_length=100)
 
     save_acc = forms.CharField(max_length=100)
     fixed_deposit = forms.CharField(max_length=100)
@@ -75,4 +99,9 @@ class TestField(forms.Form):
     d_1 = forms.ChoiceField(choices=DONATIONS)
     d_2 = forms.ChoiceField(choices=DONATIONS)
     d_3 = forms.ChoiceField(choices=DONATIONS)
+
+    acc = forms.CharField(max_length=100)
+    ifsc = forms.CharField(max_length=100)
+
+    time = forms.ChoiceField(choices=TIME)
 

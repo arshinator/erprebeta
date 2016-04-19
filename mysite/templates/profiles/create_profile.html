@@ -2,12 +2,9 @@
 {% block title %}Create your Profile - {{ block.super }}{% endblock %}
 {% block content %}
 <h1>Create your Profile</h1>
-<!--<form role="form" action="" method="post">-->
-  <!--{% csrf_token %}-->
-  <!--{{ form.as_p }}-->
-  <!--<input type="submit" value="Submit"/>-->
-<!--</form>-->
-<form class="col s12" role="form" action="" method="post">{% csrf_token %}
+
+<form class="col s12" role="form" action="" method="post">
+    {% csrf_token %}
       <div class="row">
           <div class="input-field col s12">
             <input  name="first_name" type="text" class="validate black-text" >
@@ -46,7 +43,7 @@
 <script>
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year
+    selectYears: 90, // Creates a dropdown of 15 years to control year
     format: 'dd-mm-yyyy' });
 </script>
 

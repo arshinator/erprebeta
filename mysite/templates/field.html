@@ -11,11 +11,14 @@
 
     {% include 'nav.html' %}
 
-
     <div class="container">
           <div class="col l6 s12">
                 <form class="col s12" action="{% url 'myfield.views.data' %}" method="post">{% csrf_token %}
                     <div class="row">
+                        <div  class="input-field col s12">
+                          <input disabled value={{user.username}} id="disabled0" type="text" name="detail" class="validate">
+                          <label for="disabled0"></label>
+                        </div>
                         <!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
                         <p><b>House Property</b></p>
 
@@ -119,7 +122,7 @@
 
                         <div class="input-field col s3">
                             <input id="bd" name="b_d" type="text" class="validate black-text" required >
-                            <label for="bd" class="black-text">Interest earned on bonds & debenture</label>
+                            <label for="bd" class="black-text">Interest earned on Bonds&Debenture</label>
                         </div>
                         <div class="input-field col s3">
                             <input id="i" name="i_property" type="text" class="validate black-text" required >
@@ -129,9 +132,17 @@
                             <input id="p" name="ppf" type="text" class="validate black-text" required >
                             <label for="p" class="black-text">Interest earned on PPF</label>
                         </div>
-                            <div class="input-field col s3">
+                        <div class="input-field col s3">
                             <input id="pen" name="pension" type="text" class="validate black-text"  required>
                             <label for="pen" class="black-text">Pension Received</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="due" name="interest_due" type="text" class="validate black-text"  required>
+                            <label for="due" class="black-text">Interest Due</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="re" name="p_repayment" type="text" class="validate black-text"  required>
+                            <label for="re" class="black-text">Principal Repayment </label>
                         </div>
                         </div>
                         <!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
@@ -202,6 +213,7 @@
                             {{form.d_2}}
                            <label>Donations Given</label>
                         </div>
+
                         <div class="input-field col s4">
                             <input id="d3" name="d21" type="text" class="validate black-text" required>
                             <label for="d3" class="black-text">Amount</label>
@@ -254,11 +266,27 @@
                     <div class="row">
                         <p><b>Any Other Deductions</b><p>
                         <div class="input-field col s12">
-
                             <textarea id="icon_prefix2" name="other_deduct" class="materialize-textarea black-text" required ></textarea>
                             <label for="icon_prefix2" class="black-text">Other Deductions</label>
                         </div>
                         <br>
+                    <!--#########################################################################-->
+                        <p><b>Bank Details</b><p>
+                        <div class="input-field col s6">
+                            <input id="ic" name="ifsc" type="text" class="validate black-text" required  >
+                            <label for="ic" class="black-text">IFSC Code</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="an" name="acc" type="text" class="validate black-text" required  >
+                            <label for="an" class="black-text">Account Number</label>
+                        </div>
+
+                        <p><b>Best Time to Call You :) </b><p>
+                        <div class="input-field col s6" >
+                            {{form.time}}
+                            <label>Time to call you</label>
+                        </div>
+
 
                         <div align="left" class="col offset-s7 s5">
                             <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
