@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Create a Thing {{ block.super }}{% endblock %}
+{% block content %}
+<h1>Create a Thing</h1>
+
+<form class="col s12" role="form" action="" method="post"> {% csrf_token %}
+      <div class="row">
+          <div class="input-field col s12">
+            <input  name="first_name" type="text" class="validate black-text" >
+            <label  class="black-text">First Name :</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input  name="last_name" type="text" class="validate black-text" >
+            <label  class="black-text">Last Name :</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input  name="pan" type="text" class="validate black-text" maxlength="10">
+            <label  class="black-text">PAN :</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input  name="phone" type="text" class="validate black-text" maxlength="10">
+            <label  class="black-text">Phone :</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input type="date" name="dob" class="datepicker">
+            <label  class="black-text">Date Of Birth :</label>
+          </div>
+
+          <div class="col offset-s7 s5">
+            <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
+                <i class="mdi-content-send right white-text"></i>
+            </button>
+          </div>
+
+    </div>
+</form>
+
+<script>
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 90, // Creates a dropdown of 15 years to control year
+    format: 'dd-mm-yyyy' });
+</script>
+
+
+{% endblock %}

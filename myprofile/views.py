@@ -1,78 +1,75 @@
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render, redirect
-from .models import Profile
-from .forms import ProfileForm
+from .models import Thing
+from .forms import ThingForm
 from django.template.defaultfilters import slugify
 
 
 # Create your views here.
 
+def settings(request):
+    things = Thing.objects.all()
+    return render(request, 'settings.html', {'things': things, })
 
-def index(request):
-    profiles = Profile.objects.all()
-    return render(request, 'index.html', {'profiles': profiles, })
 
 
-def profile_detail(request, slug):
+
+def thing_detail(request, slug):
     # grab the object
-    profile = Profile.objects.get(slug=slug)
+    thing = Thing.objects.get(slug=slug)
 
     # and pass to the template
-    return render(request, 'profiles/profile_detail.html', {'profiles': profile, })
+    return render(request, 'things/thing_detail.html', {'thing': thing, })
 
 
-def edit_profile(request, slug):
+@login_required
+def edit_thing(request, slug):
     # grab the object
-    profile = Profile.objects.get(slug=slug)
+    thing = Thing.objects.get(slug=slug)
+
+    if (thing.user != request.user):
+        raise Http404
     # set the form we are using
-    form_class = ProfileForm
+    form_class = ThingForm
 
     # if we're coming to this view from a sbmitted form
     if request.method == 'POST':
         # grab the data from the submitted form and apply to the form
-        form = form_class(data=request.POST, instance=profile)
+        form = form_class(data=request.POST, instance=thing)
         if form.is_valid():
             # save the new data
             form.save()
-            return redirect('profile_detail', slug=profile.slug)
+            return redirect('thing_detail', slug=thing.slug)
             # otherwise just create the form
     else:
-        form = form_class(instance=profile)
+        form = form_class(instance=thing)
 
         # and render the template
-        return render(request, 'profiles/edit_profile.html', {'profiles': profile, 'form': form, })
+        return render(request, 'things/edit_thing.html', {'thing': thing, 'form': form, })
 
 
-
-
-
-def create_profile(request):
-    form_class = ProfileForm
+def create_thing(request):
+    form_class = ThingForm
     # if we're coming from a submitted form, do this
     if request.method == 'POST':
         # grab the data from the submitted form and apply to the form
         form = form_class(request.POST)
         if form.is_valid():
             # create an instance but dont save yet
-            profile = form.save(commit=False)
+            thing = form.save(commit=False)
             # set the additional details
-            profile.user = request.user
-            # profile.pan = form.clean_pan(profile.pan)
+            thing.user = request.user
+            thing.slug = slugify(thing.pan)
 
-            # if(profile.pan[4] == 'P' and profile.pan[9].isdigit() == True and profile.pan[:5].isalpha() == True and
-            #    profile.pan[6:9].isnumeric() == True):
-            #
-            #
-            # else:
-            #     raise ValueError('Enter PAN Properly')
-            profile.slug = slugify(profile.pan)
-                # save the object
-            profile.save()
+            # save the object
+            thing.save()
 
-            # redirect to our newly created profiles
-            return redirect('profile_detail', slug=profile.slug)
+            # redirect to our newly created thing
+            return redirect('thing_detail', slug=thing.slug)
 
             # otherwise just create the form
     else:
         form = form_class()
 
-    return render(request, 'profiles/create_profile.html', {'form': form, })
+    return render(request, 'things/create_thing.html', {'form': form, })

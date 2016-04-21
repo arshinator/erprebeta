@@ -22,14 +22,16 @@ from myprofile.backends import MyRegistrationView
 from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
-    url(r'^$', 'myprofile.views.index', name='home'),
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^settings/$', 'myprofile.views.settings', name='settings'),
+    # url(r'^$', 'myprofile.views.index', name='home'),
     url(r'^admin/', admin.site.urls),
 
-    # url(r'^profiles/$', RedirectView.as_view(pattern_name='tandc',permanent=True)),
-    url(r'^profiles/(?P<slug>[-\w]+)/$', 'myprofile.views.profile_detail', name='profile_detail'),
-    url(r'^profiles/(?P<slug>[-\w]+)/edit/$', 'myprofile.views.edit_profile', name='edit_profile'),
+    # myprofile
+    url(r'^things/(?P<slug>[-\w]+)/$', 'myprofile.views.thing_detail', name='thing_detail'),
+    url(r'^things/(?P<slug>[-\w]+)/edit/$', 'myprofile.views.edit_thing', name='edit_thing'),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-    url(r'^accounts/create_profile/$', 'myprofile.views.create_profile', name='registration_create_profile'),
+    url(r'^accounts/create_thing/$', 'myprofile.views.create_thing', name='registration_create_thing'),
 
     # mycontact
     url(r"^contact/", 'mycontact.views.contact', name="contact"),
@@ -37,8 +39,6 @@ urlpatterns = [
     # myupload
     url(r'^dash/', 'myupload.views.Form', name="dash"),
     url(r'^upload', 'myupload.views.Upload', name="upload"),
-
-
     # url(r'^dataform/', 'myfield.views.dataform', name="dataform"),
     url(r"^data", 'myfield.views.data', name="data"),
 
@@ -48,6 +48,6 @@ urlpatterns = [
     url(r"^pay/", TemplateView.as_view(template_name='pay.html'), name='pay'),
     url(r"^display/", TemplateView.as_view(template_name='display.html'), name='display'),
 
-    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/', include('registration.urls')),
 
 ]

@@ -6,30 +6,31 @@
             <div class="nav-wrapper">
             <a href="#" id="logo-container" class="brand-logo">easyreturns</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="/" target="_blank">Blog</a></li>
+                    <li><a href="http://rbgco.in/" target="_blank">Blog</a></li>
 
-                    <!--{% if request.user.is_authenticated %}-->
+                    {% if request.user.is_authenticated %}
                         <li><a href="{% url 'dash' %}">Dashboard</a></li>
+                        <li><a href="{% url 'settings' %}">Settings</a></li>
                         <li><a href="{% url 'auth_logout' %}" class="button">Logout</a></li>
-                        <!--<li>Hi,{{user.username}} </li>-->
-                    <!--{% else %}-->
+
+                    {% else %}
                         <li><a href="{% url 'auth_login' %}" class="button">Login/SignUp</a></li>
-                    <!--{% endif %}-->
+                    {% endif %}
 
 
 
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#" target="_blank">Blog</a></li>
 
 
                     {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'dash'%}">Dashboard</a></li>
-                        <li><a href="">Settings</a></li>
+                        <li><a href="{% url 'dash' %}">Dashboard</a></li>
+                        <li><a href="{% url 'settings' %}">Settings</a></li>
                         <li><a href="{% url 'auth_logout' %}" class="button">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'auth_login' %}" class="button">Login</a></li>

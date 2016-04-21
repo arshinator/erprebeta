@@ -1,10 +1,7 @@
-from django import forms
 from django.forms import ModelForm
-from .models import Profile
+from .models import Thing
 
-
-class ProfileForm(ModelForm):
+class ThingForm(ModelForm):
     class Meta:
-        model = Profile
-        fields = ('first_name', 'last_name', 'pan', 'dob','phone')
-
+        model = Thing
+        fields = ('first_name','last_name', 'pan','dob','phone')
